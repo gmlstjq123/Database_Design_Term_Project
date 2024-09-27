@@ -1,0 +1,216 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="select.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <script>
+    const logout = () => { window.location.href = "http://localhost:3000/logout" };
+    const move = () => {window.location.href="http://localhost:3000/retrieve"};
+  </script>
+</head>
+<div class="header">
+  <div class="header-logo">
+    <div class="logo"><img src="./img/inha_hospital_logo.png" alt="INHA HOSPITAL" /></div>
+  </div>
+
+  <div class="header-info">
+    <span class="header-info_title">환자 검색 페이지</span>
+  </div>
+</div>
+
+<div class="content">
+  <div class="side">
+    <div class="side-frame">
+      <div class="side-frame_id">
+        <div class="userinfo">{{user}}</div>
+        <button class="logout" onclick="logout()">Logout</button>
+      </div>
+    </div>
+    <div class="side-menu">
+      <div class="side-menu_list" onclick="move()">
+        <span>환자 검색</span>
+        <span class="material-icons">add</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="main-top">
+      <div class="main-top_table">
+        <h1 class="info">환자 검색</h1>
+        <table>
+            <tr>
+              <form method="get">
+                <input type="hidden" name="retrieve_type" value="patient_id">
+                <td><label>Patient ID:</label></td>
+                <td><input type="text" name="patient_id"></td>
+                <td><input type="submit" value="Retrieve"></td>
+              </form>
+            </tr>
+            <tr>
+              <form method="get">
+                <input type="hidden" name="retrieve_type" value="name">
+                <td><label>Name:</label></td>
+                <td><input type="text" name="name"></td>
+                <td><input type="submit" value="Retrieve"></td>
+              </form>
+            </tr>
+            <tr>
+              <form method="get">
+                <input type="hidden" name="retrieve_type" value="social_security_number">
+                <td><label>SSN:</label></td>
+                <td><input type="text" name="social_security_number"></td>
+                <td><input type="submit" value="Retrieve"></td>
+              </form>
+            </tr>
+            <tr>
+              <form method="get">
+                <input type="hidden" name="retrieve_type" value="gender">
+                <td><label>Gender:</label></td>
+                <td><input type="text" name="gender"></td>
+                <td><input type="submit" value="Retrieve"></td>
+              </form>
+            </tr>
+            <tr>
+              <form method="get">
+                <input type="hidden" name="retrieve_type" value="address">
+                <td><label>Address:</label></td>
+                <td><input type="text" name="address"></td>
+                <td><input type="submit" value="Retrieve"></td>
+              </form>
+            </tr>
+            <tr>
+              <form method="get">
+                <input type="hidden" name="retrieve_type" value="blood_type">
+                <td><label>Blood Type:</label></td>
+                <td><input type="text" name="blood_type"></td>
+                <td><input type="submit" value="Retrieve"></td>
+              </form>
+            </tr>
+            <tr>
+              <form method="get">
+                <input type="hidden" name="retrieve_type" value="height_weight">
+                <td><label>Height(이상):</label></td>
+                <td><input type="text" name="height"></td>
+                <td><label>Weight(이상):</label></td>
+                <td><input type="text" name="weight"></td>
+                <td><input type="submit" value="Retrieve"></td>
+              </form>
+            </tr>
+            <tr>
+              <form method="get">
+                <input type="hidden" name="retrieve_type" value="phone_number">
+                <td><label>Phone Number:</label></td>
+                <td><input type="text" name="phone_number"></td>
+                <td><input type="submit" value="Retrieve"></td>
+              </form>
+            </tr>
+            <tr>
+              <form method="get">
+                <input type="hidden" name="retrieve_type" value="Doctor_doctor_id">
+                <td><label>Doctor ID:</label></td>
+                <td><input type="text" name="Doctor_doctor_id"></td>
+                <td><input type="submit" value="Retrieve"></td>
+              </form>
+            </tr>
+            <tr>
+              <form method="get">
+                <input type="hidden" name="retrieve_type" value="Nurse_nurse_id">
+                <td><label>Nurse ID:</label></td>
+                <td><input type="text" name="Nurse_nurse_id"></td>
+                <td><input type="submit" value="Retrieve"></td>
+              </form>
+            </tr>
+        </table>
+        <h1 class="info">환자 진료/치료 정보 조회</h1>
+        <table>
+          <tr>
+            <form method="get">
+              <input type="hidden" name="retrieve_type" value="patient_examination_treatment">
+              <td><label>Patient ID:</label></td>
+              <td><input type="text" name="patient_id"></td>
+              <td><input type="submit" value="Retrieve"></td>
+            </form>
+          </tr>
+          <tr>
+            <form method="get">
+              <input type="hidden" name="retrieve_type" value="doctor_examination_treatment">
+              <td><label>Doctor ID:</label></td>
+              <td><input type="text" name="doctor_id"></td>
+              <td><input type="submit" value="Retrieve"></td>
+            </form>
+          </tr>
+          <tr>
+            <form method="get">
+              <input type="hidden" name="retrieve_type" value="nurse_examination_treatment">
+              <td><label>Nurse ID:</label></td>
+              <td><input type="text" name="nurse_id"></td>
+              <td><input type="submit" value="Retrieve"></td>
+            </form>
+          </tr>
+        </table>
+
+        <h1 class="info">{{title1}}</h1>
+        <table>
+          <tr>
+            <td><b>Patient ID</b></td>
+            <td><b>Name</b></td>
+            <td><b>SSN</b></td>
+            <td><b>Gender</b></td>
+            <td><b>Address</b></td>
+            <td><b>Blood Type</b></td>
+            <td><b>Height</b></td>
+            <td><b>Weight</b></td>
+            <td><b>Phone Number</b></td>
+            <td><b>Doctor ID</b></td>
+            <td><b>Nurse ID</b></td>
+          </tr>
+          {{#each selectedPatients}}
+            <tr>
+                <td style="margin-right: 50px;">{{patient_id}}</td> 
+                <td style="margin-left: 20px; margin-right: 20px;">{{name}}</td> 
+                <td style="margin-left: 20px; margin-right: 20px;">{{social_security_number}}</td>
+                <td style="margin-left: 20px; margin-right: 20px;">{{gender}}</td>
+                <td style="margin-left: 20px; margin-right: 20px;">{{address}}</td>
+                <td style="margin-left: 70px; margin-right: 70px;">{{blood_type}}</td>
+                <td style="margin-left: 50px; margin-right: 50px;">{{height}}</td>
+                <td style="margin-left: 50px; margin-right: 50px;">{{weight}}</td>
+                <td style="margin-left: 20px; margin-right: 20px;">{{phone_number}}</td>
+                <td style="margin-left: 70px; margin-right: 70px;">{{Doctor_doctor_id}}</td>
+                <td style="margin-left: 70px; margin-right: 70px;">{{Nurse_nurse_id}}</td>
+            </tr>
+          {{/each}}
+
+        </table>
+        <h1 class="info">환자 검진/치료 정보 조회</h1>
+        <table>
+          <tr>
+            <td><b>Patient ID</b></td>
+            <td><b>Patient Name</b></td>
+            <td><b>Doctor ID</b></td>
+            <td><b>Doctor Name</b></td>
+            <td><b>Examination Date Time</b></td>
+            <td><b>Examination Details</b></td>
+            <td><b>Nurse ID</b></td>
+            <td><b>Nurse Name</b></td>
+            <td><b>Treatement Date Time</b></td>
+            <td><b>Treatment Details</b></td>
+          </tr>
+          {{#each selectedPatients}}
+            <tr>
+                <td style="margin-left: 50px; margin-right: 20px;">{{patient_id}}</td> 
+                <td style="margin-left: 30px; margin-right: 20px;">{{patient_name}}</td> 
+                <td style="margin-left: 30px; margin-right: 20px;">{{doctor_id}}</td>
+                <td style="margin-left: 30px; margin-right: 20px;">{{doctor_name}}</td>
+                <td>{{examination_date_time}}</tD>
+                <td style="margin-left: 30px; margin-right: 20px;">{{examination_details}}</td>
+                <td style="margin-left: 30px; margin-right: 20px;">{{nurse_id}}</td>
+                <td style="margin-left: 30px; margin-right: 20px;">{{nurse_name}}</td>
+                <td>{{treatment_date_time}}</td>
+                <td style="margin-left: 30px; margin-right: 50px;">{{treatment_details}}</td>
+            </tr>
+          {{/each}}
+
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

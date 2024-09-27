@@ -1,0 +1,134 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="select.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <script>
+    const logout = () => { window.location.href = "http://localhost:3000/logout" };
+  </script>
+</head>
+<div class="header">
+  <div class="header-logo">
+    <div class="logo"><img src="./img/inha_hospital_logo.png" alt="INHA HOSPITAL" /></div>
+  </div>
+
+  <div class="header-info">
+    <span class="header-info_title">관리자 페이지</span>
+  </div>
+</div>
+
+<div class="content">
+  <div class="side">
+    <div class="side-frame">
+      <div class="side-frame_id">
+        <div class="userinfo">{{user}}</div>
+        <button class="logout" onclick="logout()">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="main-top">
+      <div class="main-top_table">
+        <h1 class="info">의사 추가</h1>
+        <table>
+          <tr>
+            <td><b>Doctor Id</b></td>
+            <td><b>Name</b></td>
+            <td><b>Address</b></td>
+            <td><b>Phone Number</b></td>
+            <td><b>Password</b></td>
+            <td><b>Department Id</b></td>
+          </tr>
+          <form method="post">
+            <input type="hidden" name="employee_type" value="doctor">
+            <tr>
+                <td><input type="text" name="doctor_id" value={{doctor_id}}></td> 
+                <td><input type="text" name="name" value={{name}}></td> 
+                <td><input type="text" name="address" value={{address}}></td>
+                <td><input type="text" name="phone_number" value={{phone_number}}></td> 
+                <td><input type="password" name="password" value={{password}}></td> 
+                <td><input type="text" name="Department_department_id" value={{Department_department_id}}></td>
+                <td><input type="submit" value="Insert"/></td>
+            </tr>
+          </form>
+        </table>
+        <h1 class="info">간호사 추가</h1>
+        <table>
+          <tr>
+            <td><b>Nurse Id</b></td>
+            <td><b>Name</b></td>
+            <td><b>Address</b></td>
+            <td><b>Phone Number</b></td>
+            <td><b>Password</b></td>
+            <td><b>Department Id</b></td>
+          </tr>
+          <form method="post">
+            <input type="hidden" name="employee_type" value="nurse">
+            <tr>
+                <td><input type="text" name="nurse_id" value={{nurse_id}}></td> 
+                <td><input type="text" name="name" value={{name}}></td> 
+                <td><input type="text" name="address" value={{address}}></td>
+                <td><input type="text" name="phone_number" value={{phone_number}}></td> 
+                <td><input type="password" name="password" value={{password}}></td> 
+                <td><input type="text" name="Department_department_id" value={{Department_department_id}}></td>
+                <td><input type="submit" value="Insert"/></td>
+            </tr>
+          </form>
+        </table>
+        <h1 class="info">{{title1}}</h1>
+        <table>
+          <tr>
+            <td><b>Doctor Id</b></td>
+            <td><b>Name</b></td>
+            <td><b>Address</b></td>
+            <td><b>Phone Number</b></td>
+            <td><b>Password</b></td>
+            <td><b>Department Id</b></td>
+          </tr>
+          {{#each allDoctors}}
+          <form method="post">
+            <tr>
+              <input type="hidden" name="doctor_id" value={{doctor_id}}>
+                <td style="margin-left: 40px; margin-right: 40px;">{{doctor_id}}</td> 
+                <td><input type="text" name="name" value={{name}}></td> 
+                <td><input type="text" name="address" value={{address}}></td>
+                <td><input type="text" name="phone_number" value={{phone_number}}></td> 
+                <td><input type="password" name="password" value={{password}}></td> 
+                <td><input type="text" name="Department_department_id" value={{Department_department_id}}></td>
+                <td><input type="submit" value="Modify" formaction="/admin/doctor"></td>
+                <td><input type="submit" value="Delete" formaction="/admin/delete/doctor"></td>
+            </tr>
+          </form>
+          {{/each}}
+
+        </table>
+
+        <h1 class="info">{{title2}}</h1>
+        <table>
+          <tr>
+            <td><b>Nurse Id</b></td>
+            <td><b>Name</b></td>
+            <td><b>Address</b></td>
+            <td><b>Phone Number</b></td>
+            <td><b>Password</b></td>
+            <td><b>Department Id</b></td>
+          </tr>
+          {{#each allNurses}}
+          <form method="post">
+            <tr>
+                <input type="hidden" name="nurse_id" value={{nurse_id}}>
+                <td style="margin-left: 40px; margin-right: 40px;">{{nurse_id}}</td> 
+                <td><input type="text" name="name" value={{name}}></td> 
+                <td><input type="text" name="address" value={{address}}></td>
+                <td><input type="text" name="phone_number" value={{phone_number}}></td> 
+                <td><input type="password" name="password" value={{password}}></td> 
+                <td><input type="text" name="Department_department_id" value={{Department_department_id}}></td>
+                <td><input type="submit" value="Modify" formaction="/admin/nurse"></td>
+                <td><input type="submit" value='Delete' formaction="/admin/delete/nurse"></td>
+            </tr>
+          </form>
+          {{/each}}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

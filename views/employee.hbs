@@ -1,0 +1,143 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="select.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <script>
+    const logout = () => { window.location.href = "http://localhost:3000/logout" };
+    const move = () => {window.location.href="http://localhost:3000/retrieve"};
+  </script>
+</head>
+<div class="header">
+  <div class="header-logo">
+    <div class="logo"><img src="./img/inha_hospital_logo.png" alt="INHA HOSPITAL" /></div>
+  </div>
+
+  <div class="header-info">
+    <span class="header-info_title">직원 페이지</span>
+  </div>
+</div>
+
+<div class="content">
+  <div class="side">
+    <div class="side-frame">
+      <div class="side-frame_id">
+        <div class="userinfo">{{user}}</div>
+        <button class="logout" onclick="logout()">Logout</button>
+      </div>
+    </div>
+    <div class="side-menu">
+      <div class="side-menu_list" onclick="move()">
+        <span>환자 검색</span>
+        <span class="material-icons">add</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="main-top">
+      <div class="main-top_table">
+        <h1 class="info">검진 추가</h1>
+        <table>
+          <tr>
+            <td><b>Examination Date Time</b></td>
+            <td><b>Examination Details</b></td>
+            <td><b>Doctor ID</b></td>
+            <td><b>Patient ID</b></td>
+          </tr>
+          <form method="post">
+            <input type="hidden" name="employee_type" value="doctor">
+            <tr>
+                <td><input type="datetime-local" name="examination_date_time" value={{examination_date_time}}></td> 
+                <td><input type="text" name="examination_details" value={{examination_details}}></td> 
+                <td><input type="text" name="Doctor_doctor_id" value={{Doctor_doctor_id}}></td>
+                <td><input type="text" name="Patient_patient_id" value={{Patient_patient_id}}></td> 
+                <td><input type="submit" value="Insert"/></td>
+            </tr>
+          </form>
+        </table>
+        <h1 class="info">치료 추가</h1>
+        <table>
+          <tr>
+            <td><b>Treatment Date Time</b></td>
+            <td><b>Treatment Details</b></td>
+            <td><b>Nurse ID</b></td>
+            <td><b>Patient ID</b></td>
+          </tr>
+          <form method="post">
+            <input type="hidden" name="employee_type" value="nurse">
+            <tr>
+                <td><input type="datetime-local" name="treatment_date_time" value={{treatment_date_time}}></td> 
+                <td><input type="text" name="treatment_details" value={{treatment_details}}></td> 
+                <td><input type="text" name="Nurse_nurse_id" value={{Nurse_nurse_id}}></td>
+                <td><input type="text" name="Patient_patient_id" value={{Patient_patient_id}}></td> 
+                <td><input type="submit" value="Insert"/></td>
+            </tr>
+          </form>
+        </table>
+        <h1 class="info">{{title1}}</h1>
+        <table>
+          <tr>
+            <td><b>Examination Date Time</b></td>
+            <td><b>Examination Details</b></td>
+            <td><b>Doctor ID</b></td>
+            <td><b>Patient ID</b></td>
+          </tr>
+          {{#each allExaminations}}
+          <form method="post">
+            <tr> 
+                <td style="margin-right: 20px;">{{examination_date_time}}</td> 
+                <td style="margin-left: 40px; margin-right: 40px;">{{examination_details}}</td> 
+                <td style="margin-left: 70px; margin-right: 70px;">{{Doctor_doctor_id}}</td>
+                <td style="margin-left: 30px; margin-right: 70px;">{{Patient_patient_id}}</td>
+            </tr>
+            <tr>
+              <td><input style="margin-left: 20px; margin-right: 20px;" type="datetime-local"
+               name="examination_date_time" value={{examination_date_time}}></td> 
+              <td><input style="margin-left: 20px; margin-right: 20px;" type="text" 
+              name="examination_details" value={{examination_details}}></td> 
+              <td style="margin-left: 90px; margin-right: 90px;">{{Doctor_doctor_id}}</td>
+              <td style="display: none"><input type="text" name="Doctor_doctor_id" value={{Doctor_doctor_id}}></td>
+              <td style="margin-left: 40px; margin-right: 90px;">{{Patient_patient_id}}</td>
+              <td style="display: none"><input type="text" name="Patient_patient_id" value={{Patient_patient_id}}></td>
+              <td><input type="submit" value="Modify" formaction="/employee/doctor"></td>
+              <td><input type="submit" value="Delete" formaction="/employee/delete/examination"></td>
+            </tr>
+          </form>
+          {{/each}}
+
+        </table>
+
+        <h1 class="info">{{title2}}</h1>
+        <table>
+          <tr>
+            <td><b>Treatment Date Time</b></td>
+            <td><b>Treatment Details</b></td>
+            <td><b>Nurse ID</b></td>
+            <td><b>Patient ID</b></td>
+          </tr>
+          {{#each allTreatments}}
+          <form method="post">
+            <tr>
+                <td style="margin-right: 20px;">{{treatment_date_time}}</td> 
+                <td style="margin-left: 40px; margin-right: 40px;">{{treatment_details}}</td> 
+                <td style="margin-left: 70px; margin-right: 70px;">{{Nurse_nurse_id}}</td>
+                <td style="margin-left: 30px; margin-right: 70px;">{{Patient_patient_id}}</td>
+            </tr>
+            <tr>
+                <td><input style="margin-left: 20px; margin-right: 20px;" type="datetime-local" 
+                  name="treatment_date_time" value={{treatment_date_time}}></td> 
+                <td><input style="margin-left: 20px; margin-right: 20px;" type="text" 
+                  name="treatment_details" value={{treatment_details}}></td> 
+                <td style="margin-left: 90px; margin-right: 90px;">{{Nurse_nurse_id}}</td>
+                <td style="display: none"><input type="text" name="Nurse_nurse_id" value={{Nurse_nurse_id}}></td>
+                <td style="margin-left: 40px; margin-right: 90px;">{{Patient_patient_id}}</td>
+                <td style="display: none"><input type="text" name="Patient_patient_id" value={{Patient_patient_id}}></td>
+                <td><input type="submit" value="Modify" formaction="/employee/nurse"></td>
+                <td><input type="submit" value="Delete" formaction="/employee/delete/treatment"></td>
+            </tr>
+          </form>
+          {{/each}}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

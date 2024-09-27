@@ -1,0 +1,78 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="select.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <script>
+    const logout = () => { window.location.href = "http://localhost:3000/logout" };
+    const move = () => {window.location.href="http://localhost:3000/retrieve"};
+  </script>
+</head>
+<div class="header">
+  <div class="header-logo">
+    <div class="logo"><img src="./img/inha_hospital_logo.png" alt="INHA HOSPITAL" /></div>
+  </div>
+
+  <div class="header-info">
+    <span class="header-info_title">환자 예약 시스템</span>
+  </div>
+</div>
+
+<div class="content">
+  <div class="side">
+    <div class="side-frame">
+      <div class="side-frame_id">
+        <div class="userinfo">{{user}}</div>
+        <button class="logout" onclick="logout()">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="main-top">
+      <div class="main-top_table">
+        <h1 class="info">예약하기</h1>
+        <table>
+            <form method="post">
+                <tr>
+                    <td><label>Reservation Date Time:</label></td>
+                    <td><input type="datetime-local" name="reservation_date_time"></td> 
+                </tr>
+                <tr>
+                    <td><label>Department ID:</label></td>
+                    <td><input type="text" name="Medical_Speciality_department_id"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Reserve"></td>
+                </tr>
+            </form>
+        </table>
+
+        <h1 class="info">예약 조회</h1>
+        <table>
+          <tr>
+            <td><b>Reservation Number</b></td>
+            <td><b>Reservation Date Time</b></td>
+            <td><b>Patient ID</b></td>
+            <td><b>Patient Name</b></td>
+            <td><b>Deparment ID</b></td>
+            <td><b>Department Name</b></td>
+          </tr>
+          {{#each patientReservations}}
+          <form method="post">
+            <tr>
+                <td><input type="hidden" name="reservation_number" value={{reservation_number}}></td> 
+                <td style="margin-right: 60px;">{{reservation_number}}</td> 
+                <td style="margin-left: 40px; margin-right: 40px;">{{reservation_date_time}}</td> 
+                <td style="margin-left: 40px; margin-right: 40px;">{{Patient_patient_id}}</td>
+                <td style="margin-left: 40px; margin-right: 40px;">{{patient_name}}</td>
+                <td style="margin-left: 40px; margin-right: 40px;">{{Medical_Speciality_department_id}}</td>
+                <td style="margin-left: 70px; margin-right: 70px;">{{department_name}}</td>
+                <td><input type="submit" value="Cancel" formaction="/patient/cancel"></td>
+            </tr>
+          </form>
+          {{/each}}
+
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
